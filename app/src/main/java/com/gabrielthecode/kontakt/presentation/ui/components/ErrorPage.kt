@@ -20,7 +20,6 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.gabrielthecode.kontakt.R
-import com.gabrielthecode.kontakt.presentation.ui.theme.BlueText
 import com.gabrielthecode.kontakt.presentation.ui.theme.Typography
 
 @Composable
@@ -59,7 +58,7 @@ fun ErrorPage(
 			modifier = Modifier.align(Alignment.CenterHorizontally),
 			text = message,
 			style = Typography.labelLarge,
-			color = BlueText
+			color = MaterialTheme.colorScheme.secondary
 		)
 
 		Spacer(modifier = Modifier.height(24.dp))
@@ -67,13 +66,13 @@ fun ErrorPage(
 		OutlinedButton(
 			onClick = onClickRetry, border = BorderStroke(
 				width = 1.dp,
-				color = BlueText
+				color = MaterialTheme.colorScheme.secondary
 			)
 		) {
 			Text(
 				text = stringResource(id = R.string.retry),
 				style = Typography.labelLarge,
-				color = BlueText
+				color = MaterialTheme.colorScheme.secondary
 			)
 		}
 	}

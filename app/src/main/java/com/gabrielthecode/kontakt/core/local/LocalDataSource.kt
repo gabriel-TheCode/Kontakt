@@ -10,6 +10,8 @@ interface LocalDataSource {
 	suspend fun saveUserContacts(userContacts: List<UserEntity>)
 	suspend fun getRemoteKeyById(id: String): RemoteKeyEntity?
 	suspend fun getAllRemoteKeys(): List<RemoteKeyEntity>?
+	suspend fun deleteAllUserContacts()
+	suspend fun deleteAllRemoteKeys()
 }
 
 

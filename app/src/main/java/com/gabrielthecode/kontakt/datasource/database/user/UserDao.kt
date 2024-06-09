@@ -20,7 +20,7 @@ interface UserDao {
 	fun getUsers(): PagingSource<Int, UserEntity>
 
 	@Query("DELETE FROM user")
-	fun clear()
+	fun clearUsers()
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	suspend fun insert(userEntity: UserEntity): Long

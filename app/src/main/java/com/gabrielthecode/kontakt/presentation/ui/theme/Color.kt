@@ -15,7 +15,4 @@ val GreenAutumn = Color(0xFFa7a65a)
 val Green = Color(0xFF819d5d)
 val GreenStrong = Color(0xFF5e9264)
 
-val BlueBackground = Color(0xFFF4F7FD)
-val BlueText = Color(0xFF1E3054)
-
 val BlueGray100 = Color(0xFFCFD8DC)

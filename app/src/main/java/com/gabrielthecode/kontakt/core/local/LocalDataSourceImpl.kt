@@ -1,6 +1,7 @@
 package com.gabrielthecode.kontakt.core.local
 
 import androidx.paging.PagingSource
+import androidx.room.withTransaction
 import com.gabrielthecode.kontakt.datasource.database.AppDatabase
 import com.gabrielthecode.kontakt.datasource.database.remotekey.RemoteKeyEntity
 import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
@@ -24,7 +25,20 @@ class LocalDataSourceImpl @Inject constructor(
 	override suspend fun getRemoteKeyById(id: String): RemoteKeyEntity? {
 		return database.getRemoteKeyDao().getRemoteKeyById(id)
 	}
+
 	override suspend fun getAllRemoteKeys(): List<RemoteKeyEntity> {
 		return database.getRemoteKeyDao().getAllRemoteKeys()
+	}
+
+	override suspend fun deleteAllUserContacts() {
+		database.withTransaction {
+			database.getUserDao().clearUsers()
+		}
+	}
+
+	override suspend fun deleteAllRemoteKeys() {
+		database.withTransaction {
+			database.getRemoteKeyDao().clearRemoteKeys()
+		}
 	}
 }

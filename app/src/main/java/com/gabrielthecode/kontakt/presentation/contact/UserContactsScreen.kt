@@ -22,7 +22,6 @@ import com.gabrielthecode.kontakt.presentation.ui.components.HeaderSection
 import com.gabrielthecode.kontakt.presentation.ui.components.InfiniteScrollLoader
 import com.gabrielthecode.kontakt.presentation.ui.components.PageLoader
 import com.gabrielthecode.kontakt.presentation.ui.components.UserContactItem
-import com.gabrielthecode.kontakt.presentation.ui.theme.BlueBackground
 import com.gabrielthecode.kontakt.presentation.ui.theme.BlueGray100
 import com.gabrielthecode.kontakt.presentation.ui.theme.KontaktTheme
 
@@ -45,7 +44,6 @@ private fun UserContactsScreenLoadedState(
 	KontaktTheme {
 		Surface(
 			modifier = Modifier.fillMaxSize(),
-			color = BlueBackground
 		) {
 			Column(Modifier.padding(8.dp)) {
 				HeaderSection(
@@ -57,7 +55,10 @@ private fun UserContactsScreenLoadedState(
 					pagingItems.itemKey { item -> item.uuid }
 					items(pagingItems.itemCount) { index ->
 						pagingItems.get(index = index)?.let { user ->
-							UserContactItem(user) { onContactClick(it) }
+							UserContactItem(
+								user,
+								modifier = Modifier
+							) { onContactClick(it) }
 							HorizontalDivider(
 								color = BlueGray100,
 								thickness = 1.dp,

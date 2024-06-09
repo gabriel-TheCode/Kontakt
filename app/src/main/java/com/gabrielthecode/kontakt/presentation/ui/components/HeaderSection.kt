@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,7 +22,7 @@ fun HeaderSection(title: String, description: String) {
     ) {
         Text(
             title,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.primary,
             style = Typography.titleLarge,
             modifier = Modifier.padding(start = 8.dp),
         )
@@ -30,10 +31,8 @@ fun HeaderSection(title: String, description: String) {
 
         Text(
             description,
-            color = Color.Gray,
             style = Typography.titleSmall,
             modifier = Modifier.padding(start = 8.dp),
         )
     }
-
 }

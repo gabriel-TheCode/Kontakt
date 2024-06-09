@@ -1,6 +1,5 @@
 package com.gabrielthecode.kontakt.datasource.mediator
 
-import android.net.http.HttpException
 import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -15,7 +14,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
 class UserContactRemoteMediator(
@@ -41,10 +39,8 @@ class UserContactRemoteMediator(
 			LoadType.APPEND -> {
 				val remoteKeys = getRemoteKeyForLastItem(state)
 				val nextKey = remoteKeys?.nextKey
-				Log.d("append", "APPEND key: $remoteKeys")
 				nextKey
 					?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
-
 				/*val key = getAllRemoteKeys().lastOrNull()
 				Log.d("append", "APPEND key: $key")
 
@@ -56,6 +52,12 @@ class UserContactRemoteMediator(
 			val apiResponse = networkDataSource.getUserContacts(page = page)
 			val results = apiResponse.results
 			val endOfPaginationReached = results.isEmpty()
+
+			if (loadType == LoadType.REFRESH) {
+				localDataSource.deleteAllUserContacts()
+				localDataSource.deleteAllRemoteKeys()
+			}
+
 			val prevKey = if (page <= 1) null else page - 1
 			val nextKey = page + 1
 			val remoteKeys = results.map {
@@ -74,9 +76,7 @@ class UserContactRemoteMediator(
 			}
 
 			return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
-		} catch (error: IOException) {
-			return MediatorResult.Error(error)
-		} catch (error: HttpException) {
+		} catch (error: Exception) {
 			return MediatorResult.Error(error)
 		}
 	}
@@ -103,9 +103,5 @@ class UserContactRemoteMediator(
 		}?.data?.lastOrNull()?.let { user ->
 			localDataSource.getRemoteKeyById(user.uuid)
 		}
-	}
-
-	private suspend fun getAllRemoteKeys(): List<RemoteKeyEntity> {
-		return localDataSource.getAllRemoteKeys()
 	}
 }

@@ -16,7 +16,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -35,8 +34,7 @@ import com.gabrielthecode.kontakt.presentation.contactdetails.UserContactDetails
 import com.gabrielthecode.kontakt.presentation.ui.components.ActionButton
 import com.gabrielthecode.kontakt.presentation.ui.components.CircleProfileImage
 import com.gabrielthecode.kontakt.presentation.ui.components.NavTopBar
-import com.gabrielthecode.kontakt.presentation.ui.theme.BlueBackground
-import com.gabrielthecode.kontakt.presentation.ui.theme.BlueText
+import com.gabrielthecode.kontakt.presentation.ui.components.UserInfoItem
 import com.gabrielthecode.kontakt.presentation.ui.theme.KontaktTheme
 import com.gabrielthecode.kontakt.presentation.ui.theme.Typography
 
@@ -79,8 +77,7 @@ private fun UserContactDetailsScreenLoadedState(
 			Surface(
 				modifier = Modifier
 					.fillMaxSize()
-					.padding(it),
-				color = BlueBackground
+					.padding(it)
 			) {
 				Column(
 					Modifier
@@ -99,14 +96,14 @@ private fun UserContactDetailsScreenLoadedState(
 						Text(
 							text = "$firstname $lastname",
 							style = Typography.titleLarge,
-							color = BlueText,
+							color = MaterialTheme.colorScheme.secondary,
 							modifier = Modifier.align(Alignment.CenterHorizontally)
 						)
 
 						Text(
 							text = email,
 							style = Typography.labelLarge,
-							color = Color.Gray,
+							color = MaterialTheme.colorScheme.tertiary,
 							modifier = Modifier.align(Alignment.CenterHorizontally)
 						)
 
@@ -125,9 +122,9 @@ private fun UserContactDetailsScreenLoadedState(
 										topStartPercent = 20,
 										bottomStartPercent = 20
 									),
-									color = BlueText
+									color = MaterialTheme.colorScheme.secondary
 								),
-								icon = R.drawable.baseline_message_24,
+								iconRes = R.drawable.baseline_message_24,
 								value = phone,
 							) {
 								onSmsClick(phone)
@@ -143,9 +140,9 @@ private fun UserContactDetailsScreenLoadedState(
 										topEndPercent = 20,
 										bottomEndPercent = 20
 									),
-									color = BlueText
+									color = MaterialTheme.colorScheme.secondary
 								),
-								icon = R.drawable.baseline_call_24,
+								iconRes = R.drawable.baseline_call_24,
 								value = phone,
 							) {
 								onCallClick(phone)
@@ -153,53 +150,34 @@ private fun UserContactDetailsScreenLoadedState(
 						}
 
 						Spacer(modifier = Modifier.height(24.dp))
-						UserInfoItem(label = "Phone", value = phone)
-						UserInfoItem(label = "Gender", value = gender)
-						UserInfoItem(label = "Birth date", value = birthdate)
+						UserInfoItem(
+							label = "Phone",
+							value = phone,
+							iconRes = R.drawable.baseline_local_phone_24
+						)
+						UserInfoItem(
+							label = "Gender",
+							value = gender,
+							iconRes = R.drawable.baseline_account_circle_24
+						)
+						UserInfoItem(
+							label = "Birth date",
+							value = birthdate,
+							iconRes = R.drawable.baseline_today_24
+						)
 						UserInfoItem(
 							label = "Address",
-							value = "$street, $city, ${this.state}, $country"
+							value = "$street, $city, ${this.state}, $country",
+							iconRes = R.drawable.baseline_location_on_24
 						)
-						UserInfoItem(label = "Registration date", value = registered)
+						UserInfoItem(
+							label = "Registration date",
+							value = registered,
+							iconRes = R.drawable.baseline_date_range_24
+						)
 					}
 				}
 			}
-		}
-	}
-}
-
-@Composable
-fun ActionButtons(
-	onCallClick: (String) -> Unit,
-	onMessageClick: (String) -> Unit,
-	phone: String
-) {
-}
-
-@Composable
-fun UserInfoItem(label: String, value: String) {
-	Card(
-		colors = CardDefaults.cardColors(
-			containerColor = MaterialTheme.colorScheme.background,
-		),
-		shape = RoundedCornerShape(8.dp),
-		modifier = Modifier
-			.fillMaxWidth()
-			.padding(vertical = 4.dp)
-	) {
-		Column(
-			modifier = Modifier.padding(12.dp)
-		) {
-			Text(
-				text = label,
-				style = Typography.headlineSmall,
-				color = Color.Gray
-			)
-			Text(
-				text = value,
-				style = Typography.labelLarge,
-				color = BlueText
-			)
 		}
 	}
 }
