@@ -2,6 +2,7 @@ package com.gabrielthecode.kontakt.presentation.contactdetails
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +17,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class UserContactDetailsActivity : ComponentActivity() {
 	private val viewModel by viewModels<UserContactDetailsViewModel>()
 	private val userContact: UserContactUIModel? by lazy {
-		intent.extras!!.getParcelable(USER_CONTACT_UI_MODEL, UserContactUIModel::class.java)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			intent.extras!!.getParcelable(USER_CONTACT_UI_MODEL, UserContactUIModel::class.java)
+		} else {
+			@Suppress("DEPRECATION")
+			intent.getParcelableExtra(USER_CONTACT_UI_MODEL)
+		}
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
