@@ -15,4 +15,6 @@ val GreenAutumn = Color(0xFFa7a65a)
 val Green = Color(0xFF819d5d)
 val GreenStrong = Color(0xFF5e9264)
 
+val RainBow = listOf(Orange, Yellow, GreenAutumn, Green, GreenStrong)
+
 val BlueGray100 = Color(0xFFCFD8DC)

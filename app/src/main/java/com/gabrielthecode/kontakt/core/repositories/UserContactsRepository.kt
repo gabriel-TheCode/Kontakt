@@ -19,12 +19,6 @@ class UserContactsRepository @Inject constructor(
 	private val localDataSource: LocalDataSourceImpl,
 	private val mapper: UserEntityToDomainMapper
 ) {
-	suspend fun getUserContacts(
-		page: Int
-	): UserDomainModel {
-		return networkDataSource.getUserContacts(page)
-	}
-
 	@OptIn(ExperimentalPagingApi::class)
 	fun getUserContactsFromCache(): Flow<PagingData<UserEntity>> {
 		return Pager(

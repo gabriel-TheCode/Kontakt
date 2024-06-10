@@ -1,6 +1,5 @@
 package com.gabrielthecode.kontakt.presentation.contact.mapper
 
-import com.gabrielthecode.kontakt.core.domain.UserDomainModel
 import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import java.time.ZonedDateTime
@@ -25,7 +24,7 @@ class UserContactEntityToUIModelMapper @Inject constructor() {
 			state = entity.state,
 			country = entity.country,
 			registered = formatDate(entity.registered),
-			favorite = false // Set default value for favorite
+			favorite = false
 		)
 	}
 }

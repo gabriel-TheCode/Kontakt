@@ -1,6 +1,5 @@
 package com.gabrielthecode.kontakt.datasource.mediator
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -41,10 +40,6 @@ class UserContactRemoteMediator(
 				val nextKey = remoteKeys?.nextKey
 				nextKey
 					?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
-				/*val key = getAllRemoteKeys().lastOrNull()
-				Log.d("append", "APPEND key: $key")
-
-				key?.nextKey ?: return MediatorResult.Success(endOfPaginationReached = true)*/
 			}
 		}
 		try {

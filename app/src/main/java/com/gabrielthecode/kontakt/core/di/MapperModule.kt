@@ -3,7 +3,6 @@ package com.gabrielthecode.kontakt.core.di
 import com.gabrielthecode.kontakt.core.domain.UserDomainModel
 import com.gabrielthecode.kontakt.datasource.network.mapper.EntityMapper
 import com.gabrielthecode.kontakt.datasource.network.mapper.UserResponseMapper
-import com.gabrielthecode.kontakt.datasource.network.mapper.error.DomainExceptionMapper
 import com.gabrielthecode.kontakt.datasource.network.model.UserResponse
 import dagger.Module
 import dagger.Provides
@@ -18,10 +17,5 @@ object MapperModule {
 	@Provides
 	fun provideSearchResponseMapper(): EntityMapper<UserResponse, UserDomainModel> {
 		return UserResponseMapper()
-	}
-
-	@Provides
-	fun provideDomainExceptionMapper(): DomainExceptionMapper {
-		return DomainExceptionMapper()
 	}
 }

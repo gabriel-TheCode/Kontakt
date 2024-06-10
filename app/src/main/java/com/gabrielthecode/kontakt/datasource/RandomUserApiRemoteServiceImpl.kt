@@ -6,6 +6,7 @@ import com.gabrielthecode.kontakt.datasource.network.model.UserResponse
 class RandomUserApiRemoteServiceImpl(
 	private val randomUserApi: RandomUserApi
 ) : RandomUserApiRemoteService {
+
 	override suspend fun getUserContacts(
 		page: Int
 	): UserResponse {

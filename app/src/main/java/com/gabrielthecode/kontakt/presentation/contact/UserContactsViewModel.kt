@@ -32,7 +32,7 @@ class UserContactsViewModel @Inject constructor(
 
 	init {
 		viewModelScope.launch {
-			getUserContactsUseCase.getUserContactsWithPaging().map { pagingData ->
+			getUserContactsUseCase.getUserContacts().map { pagingData ->
 				pagingData.map { userEntity ->
 					userContactEntityToUIModelMapper.map(userEntity)
 				}

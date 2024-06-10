@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
+import com.gabrielthecode.kontakt.presentation.ui.theme.BlueGray100
 import com.gabrielthecode.kontakt.presentation.ui.theme.Typography
 
 @Composable
@@ -21,7 +23,7 @@ fun UserContactItem(
 	modifier: Modifier,
 	onContactClick: (UserContactUIModel) -> Unit
 ) {
-	Column {
+	Column(Modifier.padding(horizontal = 10.dp)) {
 		Row(
 			modifier = modifier
 				.fillMaxWidth()
@@ -41,5 +43,11 @@ fun UserContactItem(
 				Text(text = contact.phone, style = Typography.labelMedium)
 			}
 		}
+
+		HorizontalDivider(
+			color = BlueGray100,
+			thickness = 1.dp,
+			modifier = Modifier.padding(start = 78.dp)
+		)
 	}
 }

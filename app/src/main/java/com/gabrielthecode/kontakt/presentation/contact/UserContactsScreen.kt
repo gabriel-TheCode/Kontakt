@@ -1,11 +1,9 @@
 package com.gabrielthecode.kontakt.presentation.contact
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,7 +20,6 @@ import com.gabrielthecode.kontakt.presentation.ui.components.HeaderSection
 import com.gabrielthecode.kontakt.presentation.ui.components.InfiniteScrollLoader
 import com.gabrielthecode.kontakt.presentation.ui.components.PageLoader
 import com.gabrielthecode.kontakt.presentation.ui.components.UserContactItem
-import com.gabrielthecode.kontakt.presentation.ui.theme.BlueGray100
 import com.gabrielthecode.kontakt.presentation.ui.theme.KontaktTheme
 
 @Composable
@@ -45,7 +42,7 @@ private fun UserContactsScreenLoadedState(
 		Surface(
 			modifier = Modifier.fillMaxSize(),
 		) {
-			Column(Modifier.padding(8.dp)) {
+			Column(Modifier.padding(top = 8.dp)) {
 				HeaderSection(
 					title = stringResource(id = R.string.app_name),
 					description = stringResource(id = R.string.home_description)
@@ -59,11 +56,6 @@ private fun UserContactsScreenLoadedState(
 								user,
 								modifier = Modifier
 							) { onContactClick(it) }
-							HorizontalDivider(
-								color = BlueGray100,
-								thickness = 1.dp,
-								modifier = Modifier.padding(start = 78.dp)
-							)
 						}
 					}
 
@@ -96,7 +88,6 @@ private fun UserContactsScreenLoadedState(
 								}
 							}
 						}
-						item { Spacer(modifier = Modifier.padding(4.dp)) }
 					}
 				}
 			}
