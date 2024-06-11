@@ -11,35 +11,35 @@ import androidx.room.Update
 @Dao
 interface UserDao {
 	@Query("SELECT * FROM user WHERE uuid = :primaryId")
-	fun findUserById(primaryId: String): UserEntity?
+	fun findUserById(primaryId: String): UserContactEntity?
 
 	@Query("DELETE FROM user WHERE uuid = :primaryId")
 	suspend fun deleteUserById(primaryId: String): Int
 
 	@Query("SELECT * FROM user")
-	fun getUsers(): PagingSource<Int, UserEntity>
+	fun getUsers(): PagingSource<Int, UserContactEntity>
 
 	@Query("DELETE FROM user")
 	fun clearUsers()
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	suspend fun insert(userEntity: UserEntity): Long
+	suspend fun insert(userContactEntity: UserContactEntity): Long
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	fun insert(vararg articleEntities: UserEntity): LongArray
+	fun insert(vararg articleEntities: UserContactEntity): LongArray
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	fun insert(userEntityList: List<UserEntity>): LongArray
+	fun insert(userContactEntityList: List<UserContactEntity>): LongArray
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
-	fun update(userEntity: UserEntity): Int
+	fun update(userContactEntity: UserContactEntity): Int
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
-	fun update(vararg articleEntities: UserEntity): Int
+	fun update(vararg articleEntities: UserContactEntity): Int
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
-	fun update(userEntityList: List<UserEntity>): Int
+	fun update(userContactEntityList: List<UserContactEntity>): Int
 
 	@Delete
-	fun delete(userEntity: UserEntity): Int
+	fun delete(userContactEntity: UserContactEntity): Int
 }

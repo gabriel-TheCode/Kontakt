@@ -1,15 +1,15 @@
 package com.gabrielthecode.kontakt.datasource.database.mapper
 
-import com.gabrielthecode.kontakt.core.domain.ContactDomainModel
-import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
+import com.gabrielthecode.kontakt.core.domain.UserContactDomainModel
+import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
 import com.gabrielthecode.kontakt.datasource.network.mapper.EntityMapper
 import javax.inject.Inject
 
 class UserEntityToDomainMapper @Inject constructor() :
-	EntityMapper<UserEntity, ContactDomainModel> {
-	override fun mapToDomain(entity: UserEntity): ContactDomainModel {
+	EntityMapper<UserContactEntity, UserContactDomainModel> {
+	override fun mapToDomain(entity: UserContactEntity): UserContactDomainModel {
 		entity.apply {
-			return ContactDomainModel(
+			return UserContactDomainModel(
 				uuid = uuid,
 				firstname = firstname,
 				lastname = lastname,
@@ -29,9 +29,9 @@ class UserEntityToDomainMapper @Inject constructor() :
 		}
 	}
 
-	override fun mapToEntity(domainModel: ContactDomainModel): UserEntity {
+	override fun mapToEntity(domainModel: UserContactDomainModel): UserContactEntity {
 		domainModel.apply {
-			return UserEntity(
+			return UserContactEntity(
 				uuid = uuid,
 				firstname = firstname,
 				lastname = lastname,

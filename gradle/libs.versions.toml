@@ -24,6 +24,9 @@ lottie = "6.4.0"
 glideCompose = "1.0.0-beta01"
 animationCompose = "1.7.0-beta02"
 foundationCompose = "1.7.0-beta02"
+mockito = "5.12.0"
+kotlinTest = "1.9.0-RC"
+coreTesting = "2.2.0"
 
 
 [libraries]
@@ -48,6 +51,7 @@ androidx-room-runtime = { group = "androidx.room", version.ref = "room", name = 
 androidx-room-compiler = { group = "androidx.room", version.ref = "room", name = "room-compiler" }
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycle" }
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
 
 androidx-paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
@@ -56,6 +60,7 @@ airbnb-lottie-compose = { group = "com.airbnb.android", name = "lottie-compose",
 
 org-jetbrains-kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 org-jetbrains-kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+org-jetbrains-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinTest" }
 
 com-google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 com-google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
@@ -78,6 +83,8 @@ com-github-bumptech-glide-okhttp3-integration = { group = "com.github.bumptech.g
 com-github-bumptech-glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideCompose" }
 
 io-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockito-kotlin = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

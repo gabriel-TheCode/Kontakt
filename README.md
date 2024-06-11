@@ -4,22 +4,24 @@
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=28)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
- Kontakt is an lightweight online/offline contact app built with Jetpack Compose, MVVM and Android Architecture Components.
-
+Kontakt is an lightweight online/offline contact app built with Jetpack Compose, MVVM and Android
+Architecture Components.
 
 <a name="description"></a>
 
 ## Challenge description
 
-Create an offline Contact Android Application displaying a list of contacts and their details when clicking on it, by using a network API.
+Create an offline Contact Android Application displaying a list of contacts and their details when
+clicking on it, by using a network API.
+
 - Load contacts from [Random User API](https://randomuser.me/).
 - UI Components built with Compose
 - Show contacts with the following details :
-  - Firstname and lastname.
-  - Phone number.
-  - Birth date
-  - Registration date.
-  - Address.
+    - Firstname and lastname.
+    - Phone number.
+    - Birth date
+    - Registration date.
+    - Address.
 - Refresh/Update contact in database with Room and Flow
 - Handle Caching mechanism and Infinite scroll with Paging3
 
@@ -63,6 +65,7 @@ Create an offline Contact Android Application displaying a list of contacts and 
 - [x] Light/Dark Theme
 - [x] Handling connectivity status
 - [x] MVVM/Clean Architecture
+- [x] Unit tests
 
 <a name="tools"></a>
 
@@ -80,7 +83,6 @@ Create an offline Contact Android Application displaying a list of contacts and 
 - [Retrofit2](https://github.com/square/retrofit)
 - [Lottie for Compose](https://github.com/airbnb/lottie/blob/master/android-compose.md)
 
-
 <a name="requirements"></a>
 
 ## Requirements
@@ -93,7 +95,6 @@ Create an offline Contact Android Application displaying a list of contacts and 
 
 - Just clone the app and import to Android Studio.
   `git clone https://github.com/gabriel-TheCode/Kontakt.git`
-
 
 <a name="license"></a>
 

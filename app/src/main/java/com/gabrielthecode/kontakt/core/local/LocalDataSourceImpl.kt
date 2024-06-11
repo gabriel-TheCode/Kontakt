@@ -4,13 +4,13 @@ import androidx.paging.PagingSource
 import androidx.room.withTransaction
 import com.gabrielthecode.kontakt.datasource.database.AppDatabase
 import com.gabrielthecode.kontakt.datasource.database.remotekey.RemoteKeyEntity
-import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
+import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(
 	private val database: AppDatabase
 ) : LocalDataSource {
-	override fun getUserContacts(): PagingSource<Int, UserEntity> {
+	override fun getUserContacts(): PagingSource<Int, UserContactEntity> {
 		return database.getUserDao().getUsers()
 	}
 
@@ -18,7 +18,7 @@ class LocalDataSourceImpl @Inject constructor(
 		database.getRemoteKeyDao().insertKeys(remoteKeys)
 	}
 
-	override suspend fun saveUserContacts(userContacts: List<UserEntity>) {
+	override suspend fun saveUserContacts(userContacts: List<UserContactEntity>) {
 		database.getUserDao().insert(userContacts)
 	}
 

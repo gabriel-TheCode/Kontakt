@@ -8,7 +8,7 @@ import com.gabrielthecode.kontakt.core.local.LocalDataSourceImpl
 import com.gabrielthecode.kontakt.core.remote.RemoteDataSourceImpl
 import com.gabrielthecode.kontakt.datasource.database.mapper.UserEntityToDomainMapper
 import com.gabrielthecode.kontakt.datasource.database.remotekey.RemoteKeyEntity
-import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
+import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -19,10 +19,10 @@ class UserContactRemoteMediator(
 	private val networkDataSource: RemoteDataSourceImpl,
 	private val localDataSource: LocalDataSourceImpl,
 	private val userContactMapper: UserEntityToDomainMapper
-) : RemoteMediator<Int, UserEntity>() {
+) : RemoteMediator<Int, UserContactEntity>() {
 	override suspend fun load(
 		loadType: LoadType,
-		state: PagingState<Int, UserEntity>
+		state: PagingState<Int, UserContactEntity>
 	): MediatorResult {
 		val page: Int = when (loadType) {
 			LoadType.REFRESH -> {
@@ -76,7 +76,7 @@ class UserContactRemoteMediator(
 		}
 	}
 
-	private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, UserEntity>): RemoteKeyEntity? {
+	private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, UserContactEntity>): RemoteKeyEntity? {
 		return state.anchorPosition?.let { position ->
 			state.closestItemToPosition(position)?.uuid?.let { id ->
 				localDataSource.getRemoteKeyById(id)
@@ -84,7 +84,7 @@ class UserContactRemoteMediator(
 		}
 	}
 
-	private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, UserEntity>): RemoteKeyEntity? {
+	private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, UserContactEntity>): RemoteKeyEntity? {
 		return state.pages.firstOrNull {
 			it.data.isNotEmpty()
 		}?.data?.firstOrNull()?.let { user ->
@@ -92,7 +92,7 @@ class UserContactRemoteMediator(
 		}
 	}
 
-	private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, UserEntity>): RemoteKeyEntity? {
+	private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, UserContactEntity>): RemoteKeyEntity? {
 		return state.pages.lastOrNull {
 			it.data.isNotEmpty()
 		}?.data?.lastOrNull()?.let { user ->

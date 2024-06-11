@@ -1,18 +1,18 @@
 package com.gabrielthecode.kontakt.presentation.contact.mapper
 
-import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
+import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class UserContactEntityToUIModelMapper @Inject constructor() {
-	fun map(entity: UserEntity): UserContactUIModel {
+	fun map(entity: UserContactEntity): UserContactUIModel {
 		return UserContactUIModel(
 			uuid = entity.uuid,
 			firstname = entity.firstname,
 			lastname = entity.lastname,
-			birthdate =  formatDate(entity.birthdate),
+			birthdate =  entity.birthdate.formatDate(),
 			email = entity.email,
 			smallPicture = entity.smallPicture,
 			normalPicture = entity.normalPicture,
@@ -23,14 +23,14 @@ class UserContactEntityToUIModelMapper @Inject constructor() {
 			city = entity.city,
 			state = entity.state,
 			country = entity.country,
-			registered = formatDate(entity.registered),
+			registered = entity.registered.formatDate(),
 			favorite = false
 		)
 	}
 }
 
-private fun formatDate(originalDateString: String): String {
-	val dateTime = ZonedDateTime.parse(originalDateString)
+fun String.formatDate(): String {
+	val dateTime = ZonedDateTime.parse(this)
 	val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm")
 	return dateTime.format(formatter)
 }

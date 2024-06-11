@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import com.gabrielthecode.kontakt.datasource.database.remotekey.RemoteKeyDao
 import com.gabrielthecode.kontakt.datasource.database.remotekey.RemoteKeyEntity
 import com.gabrielthecode.kontakt.datasource.database.user.UserDao
-import com.gabrielthecode.kontakt.datasource.database.user.UserEntity
+import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
 
-@Database(entities = [UserEntity::class, RemoteKeyEntity::class], version = 1, exportSchema = false)
+@Database(entities = [UserContactEntity::class, RemoteKeyEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 	abstract fun getUserDao(): UserDao
 	abstract fun getRemoteKeyDao(): RemoteKeyDao

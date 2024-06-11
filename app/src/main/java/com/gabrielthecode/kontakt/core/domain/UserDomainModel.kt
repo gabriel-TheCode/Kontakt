@@ -2,7 +2,7 @@ package com.gabrielthecode.kontakt.core.domain
 
 data class UserDomainModel(
 	val info: Info,
-	val results: List<ContactDomainModel>
+	val results: List<UserContactDomainModel>
 )
 
 data class Info(
@@ -12,7 +12,7 @@ data class Info(
 	val version: String
 )
 
-data class ContactDomainModel(
+data class UserContactDomainModel(
 	val uuid: String,
 	val firstname: String,
 	val lastname: String,

@@ -1,6 +1,6 @@
 package com.gabrielthecode.kontakt.datasource.network.mapper
 
-import com.gabrielthecode.kontakt.core.domain.ContactDomainModel
+import com.gabrielthecode.kontakt.core.domain.UserContactDomainModel
 import com.gabrielthecode.kontakt.core.domain.Info
 import com.gabrielthecode.kontakt.core.domain.UserDomainModel
 import com.gabrielthecode.kontakt.datasource.network.model.UserResponse
@@ -10,7 +10,7 @@ class UserResponseMapper @Inject constructor() :
 	EntityMapper<UserResponse, UserDomainModel> {
 	override fun mapToDomain(entity: UserResponse): UserDomainModel {
 		val userItems = entity.results.map { result ->
-			ContactDomainModel(
+			UserContactDomainModel(
 				uuid = result.login.uuid,
 				firstname = result.name.first,
 				lastname = result.name.last,
