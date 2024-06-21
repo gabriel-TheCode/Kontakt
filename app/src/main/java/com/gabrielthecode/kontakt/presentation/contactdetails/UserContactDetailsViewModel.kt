@@ -1,13 +1,10 @@
 package com.gabrielthecode.kontakt.presentation.contactdetails
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gabrielthecode.kontakt.presentation.contact.UserContactEvent
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,13 +12,13 @@ class UserContactDetailsViewModel @Inject constructor() : ViewModel() {
 
 	private var defaultState = UserContactDetailsState.InitialState
 
-	private val _state = mutableStateOf<UserContactDetailsState>(defaultState)
-	val state: State<UserContactDetailsState> get() = _state
+	private val _state = MutableStateFlow<UserContactDetailsState>(defaultState)
+	val state: StateFlow<UserContactDetailsState> get() = _state
 
-	private val _event = MutableLiveData<UserContactDetailsEvent>()
-	val event: LiveData<UserContactDetailsEvent> = _event
+	private val _event = MutableStateFlow<UserContactDetailsEvent?>(null)
+	val event: StateFlow<UserContactDetailsEvent?> = _event
 
-	fun loadContactDetails(uiModel: UserContactUIModel?){
+	fun loadContactDetails(uiModel: UserContactUIModel?) {
 		uiModel?.let {
 			_state.value = UserContactDetailsState.LoadedState(it)
 		}
@@ -35,6 +32,9 @@ class UserContactDetailsViewModel @Inject constructor() : ViewModel() {
 		_event.value = UserContactDetailsEvent.OnSmsActionClickEvent(phone)
 	}
 
+	fun clearEvent() {
+		_event.value = null
+	}
 }
 
 sealed class UserContactDetailsState {

@@ -7,11 +7,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import com.gabrielthecode.kontakt.presentation.contactdetails.UserContactDetailsActivity.Companion.USER_CONTACT_UI_MODEL
 import com.gabrielthecode.kontakt.presentation.contactdetails.UserContactDetailsEvent.OnCallActionClickEvent
 import com.gabrielthecode.kontakt.presentation.contactdetails.UserContactDetailsEvent.OnSmsActionClickEvent
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserContactDetailsActivity : ComponentActivity() {
@@ -28,8 +32,10 @@ class UserContactDetailsActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContent {
+			val state = viewModel.state.collectAsStateWithLifecycle()
+
 			UserContactDetailsScreen(
-				state = viewModel.state.value,
+				state = state.value,
 				onAppBarIconClick = { onBackPressedDispatcher.onBackPressed() },
 				onCallClick = { phone ->
 					viewModel.onCallActionClick(phone)
@@ -39,15 +45,23 @@ class UserContactDetailsActivity : ComponentActivity() {
 				}
 			)
 		}.also {
-			viewModel.event.observe(this) { event ->
-				when (event) {
-					is OnCallActionClickEvent -> userContact?.let { user -> launchCallIntent(user.phone) }
-					is OnSmsActionClickEvent -> userContact?.let { user -> launchMessageIntent(user.phone) }
+			lifecycleScope.launch {
+				viewModel.event.collectLatest {
+					when (it) {
+						is OnCallActionClickEvent -> launchCallIntent(it.phone)
+						is OnSmsActionClickEvent -> launchMessageIntent(it.phone)
+						else -> Unit
+					}
 				}
 			}
 		}
 
 		viewModel.loadContactDetails(userContact)
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+		//viewModel.clearEvent()
 	}
 
 	private fun launchCallIntent(phone: String) {

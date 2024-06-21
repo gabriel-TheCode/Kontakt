@@ -4,8 +4,7 @@
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=28)
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
-Kontakt is an lightweight online/offline contact app built with Jetpack Compose, MVVM and Android
-Architecture Components.
+Kontakt is an lightweight online/offline contact app built with Jetpack Compose, MVVM and Android Architecture Components.
 
 <a name="description"></a>
 
@@ -17,11 +16,11 @@ clicking on it, by using a network API.
 - Load contacts from [Random User API](https://randomuser.me/).
 - UI Components built with Compose
 - Show contacts with the following details :
-    - Firstname and lastname.
-    - Phone number.
-    - Birth date
-    - Registration date.
-    - Address.
+  - Firstname and lastname.
+  - Phone number.
+  - Birth date
+  - Registration date.
+  - Address.
 - Refresh/Update contact in database with Room and Flow
 - Handle Caching mechanism and Infinite scroll with Paging3
 

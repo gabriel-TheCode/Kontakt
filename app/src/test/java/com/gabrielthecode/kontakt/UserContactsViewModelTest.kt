@@ -1,8 +1,8 @@
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.gabrielthecode.kontakt.core.usecases.GetUserContacts
-import com.gabrielthecode.kontakt.datasource.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.domain.usecases.GetUserContacts
+import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
 import com.gabrielthecode.kontakt.presentation.contact.UserContactEvent
 import com.gabrielthecode.kontakt.presentation.contact.UserContactsViewModel
 import com.gabrielthecode.kontakt.presentation.contact.mapper.UserContactEntityToUIModelMapper
