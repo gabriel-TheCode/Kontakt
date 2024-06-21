@@ -1,17 +1,16 @@
 package com.gabrielthecode.kontakt.presentation.contact
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.gabrielthecode.kontakt.core.usecases.GetUserContacts
+import com.gabrielthecode.kontakt.domain.usecases.GetUserContacts
 import com.gabrielthecode.kontakt.presentation.contact.mapper.UserContactEntityToUIModelMapper
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,11 +23,10 @@ class UserContactsViewModel @Inject constructor(
 
 	private val _userContactStateFlow: MutableStateFlow<PagingData<UserContactUIModel>> =
 		MutableStateFlow(PagingData.empty())
-	var userContactStateFlow = _userContactStateFlow
-		private set
+	val userContactStateFlow: StateFlow<PagingData<UserContactUIModel>> = _userContactStateFlow
 
-	private val _event = MutableLiveData<UserContactEvent>()
-	val event: LiveData<UserContactEvent> = _event
+	private val _event = MutableStateFlow<UserContactEvent?>(null)
+	val event: StateFlow<UserContactEvent?> = _event
 
 	init {
 		viewModelScope.launch {
@@ -46,6 +44,10 @@ class UserContactsViewModel @Inject constructor(
 
 	fun onUserContactClick(uiModel: UserContactUIModel) {
 		_event.value = UserContactEvent.OnContactClickEvent(uiModel)
+	}
+
+	fun clearEvent() {
+		_event.value = null
 	}
 }
 

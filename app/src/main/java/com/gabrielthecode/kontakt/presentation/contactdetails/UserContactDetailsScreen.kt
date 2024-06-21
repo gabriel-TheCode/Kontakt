@@ -205,13 +205,3 @@ fun ProfileScreenPreview() {
 		UserContactDetailsScreenLoadedState(LoadedState(user), {}, {}) {}
 	}
 }
-
-@Composable
-@Preview
-fun CardSample() {
-	Card(Modifier.size(width = 180.dp, height = 100.dp)) {
-		Box(Modifier.fillMaxSize()) {
-			Text("Card content", Modifier.align(Alignment.Center))
-		}
-	}
-}

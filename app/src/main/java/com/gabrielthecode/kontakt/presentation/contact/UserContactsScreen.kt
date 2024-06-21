@@ -1,11 +1,16 @@
 package com.gabrielthecode.kontakt.presentation.contact
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -38,6 +43,12 @@ private fun UserContactsScreenLoadedState(
 	pagingItems: LazyPagingItems<UserContactUIModel>,
 	onContactClick: (UserContactUIModel) -> Unit
 ) {
+	val animateState = remember {
+		MutableTransitionState(false).apply {
+			targetState = true
+		}
+	}
+
 	KontaktTheme {
 		Surface(
 			modifier = Modifier.fillMaxSize(),
@@ -65,7 +76,9 @@ private fun UserContactsScreenLoadedState(
 								item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
 							}
 							loadState.append is LoadState.Loading -> {
-								item { InfiniteScrollLoader(modifier = Modifier) }
+								item {
+									InfiniteScrollLoader(modifier = Modifier)
+								}
 							}
 							loadState.refresh is LoadState.Error -> {
 								if (pagingItems.itemCount == 0) {
@@ -81,10 +94,16 @@ private fun UserContactsScreenLoadedState(
 							}
 							loadState.append is LoadState.Error -> {
 								item {
-									ErrorBottomSection(
-										modifier = Modifier,
-										message = stringResource(R.string.unable_to_fetch),
-										onClickRetry = { retry() })
+									AnimatedVisibility(
+										visibleState = animateState,
+										enter = slideInHorizontally(),
+										exit = slideOutVertically()
+									) {
+										ErrorBottomSection(
+											modifier = Modifier,
+											message = stringResource(R.string.unable_to_fetch),
+											onClickRetry = { retry() })
+									}
 								}
 							}
 						}
