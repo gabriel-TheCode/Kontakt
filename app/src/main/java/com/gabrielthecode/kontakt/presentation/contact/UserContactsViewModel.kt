@@ -25,7 +25,7 @@ class UserContactsViewModel @Inject constructor(
 		MutableStateFlow(PagingData.empty())
 	val userContactStateFlow: StateFlow<PagingData<UserContactUIModel>> = _userContactStateFlow
 
-	private val _event = MutableStateFlow<UserContactEvent?>(null)
+	private val _event = MutableStateFlow<UserContactEvent>(UserContactEvent.None)
 	val event: StateFlow<UserContactEvent?> = _event
 
 	init {
@@ -47,10 +47,11 @@ class UserContactsViewModel @Inject constructor(
 	}
 
 	fun clearEvent() {
-		_event.value = null
+		_event.value = UserContactEvent.None
 	}
 }
 
 sealed class UserContactEvent {
 	class OnContactClickEvent(val uiModel: UserContactUIModel) : UserContactEvent()
+	data object None : UserContactEvent()
 }

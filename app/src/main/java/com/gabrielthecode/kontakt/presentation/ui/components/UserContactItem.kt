@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import com.gabrielthecode.kontakt.presentation.ui.theme.BlueGray100
@@ -50,4 +51,31 @@ fun UserContactItem(
 			modifier = Modifier.padding(start = 78.dp)
 		)
 	}
+}
+
+@Preview(showBackground = true)
+@Composable
+fun UserContactItemPreview() {
+	UserContactItem(
+		contact = UserContactUIModel(
+			uuid = "1",
+			firstname = "John",
+			lastname = "Doe",
+			birthdate = "1990-01-01",
+			email = "john.doe@example.com",
+			smallPicture = "http://example.com/small.jpg",
+			normalPicture = "http://example.com/normal.jpg",
+			largePicture = "http://example.com/large.jpg",
+			phone = "123-456-7890",
+			gender = "male",
+			street = "123 Main St",
+			city = "Hometown",
+			state = "CA",
+			country = "USA",
+			registered = "2020-01-01",
+			favorite = false
+		),
+		modifier = Modifier,
+		onContactClick = {}
+	)
 }

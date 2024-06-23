@@ -61,7 +61,7 @@ class UserContactDetailsActivity : ComponentActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		//viewModel.clearEvent()
+		viewModel.clearEvent()
 	}
 
 	private fun launchCallIntent(phone: String) {

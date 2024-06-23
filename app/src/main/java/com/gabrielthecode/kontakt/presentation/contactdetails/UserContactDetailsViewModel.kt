@@ -15,8 +15,8 @@ class UserContactDetailsViewModel @Inject constructor() : ViewModel() {
 	private val _state = MutableStateFlow<UserContactDetailsState>(defaultState)
 	val state: StateFlow<UserContactDetailsState> get() = _state
 
-	private val _event = MutableStateFlow<UserContactDetailsEvent?>(null)
-	val event: StateFlow<UserContactDetailsEvent?> = _event
+	private val _event = MutableStateFlow<UserContactDetailsEvent>(UserContactDetailsEvent.None)
+	val event: StateFlow<UserContactDetailsEvent> = _event
 
 	fun loadContactDetails(uiModel: UserContactUIModel?) {
 		uiModel?.let {
@@ -33,7 +33,7 @@ class UserContactDetailsViewModel @Inject constructor() : ViewModel() {
 	}
 
 	fun clearEvent() {
-		_event.value = null
+		_event.value = UserContactDetailsEvent.None
 	}
 }
 
@@ -43,6 +43,7 @@ sealed class UserContactDetailsState {
 }
 
 sealed class UserContactDetailsEvent {
+	data object None : UserContactDetailsEvent()
 	class OnCallActionClickEvent(val phone: String) : UserContactDetailsEvent()
 	class OnSmsActionClickEvent(val phone: String) : UserContactDetailsEvent()
 }
