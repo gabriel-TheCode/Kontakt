@@ -4,11 +4,11 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.gabrielthecode.kontakt.domain.local.LocalDataSourceImpl
-import com.gabrielthecode.kontakt.domain.remote.RemoteDataSourceImpl
-import com.gabrielthecode.kontakt.data.database.mapper.UserEntityToDomainMapper
-import com.gabrielthecode.kontakt.data.database.entities.RemoteKeyEntity
-import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
+import com.gabrielthecode.kontakt.data.local.datasource.LocalDataSourceImpl
+import com.gabrielthecode.kontakt.data.remote.datasource.RemoteDataSourceImpl
+import com.gabrielthecode.kontakt.data.local.mapper.UserEntityToDomainMapper
+import com.gabrielthecode.kontakt.data.local.entities.RemoteKeyEntity
+import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

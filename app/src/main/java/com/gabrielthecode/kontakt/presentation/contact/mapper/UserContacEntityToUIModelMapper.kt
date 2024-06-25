@@ -1,6 +1,6 @@
 package com.gabrielthecode.kontakt.presentation.contact.mapper
 
-import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
+import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
