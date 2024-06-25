@@ -71,7 +71,7 @@ clicking on it, by using a network API.
 ## Languages, libraries and tools used
 
 - [Kotlin](https://kotlinlang.org/)
-- [Jetpack comopose](https://kotlinlang.org/)
+- [Jetpack Compose](https://developer.android.com/develop/ui/compose)
 - [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 - [AndroidX libraries](https://developer.android.com/jetpack/androidx)
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) : [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle), [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), [Room](https://developer.android.com/jetpack/androidx/releases/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)

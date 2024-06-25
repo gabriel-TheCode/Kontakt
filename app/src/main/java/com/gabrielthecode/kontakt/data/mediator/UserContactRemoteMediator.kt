@@ -43,7 +43,7 @@ class UserContactRemoteMediator(
 			}
 		}
 		try {
-			delay(2000)
+			delay(2000) // [For testing] Simulate network delay to display infinite scroll loader
 			val apiResponse = networkDataSource.getUserContacts(page = page)
 			val results = apiResponse.results
 			val endOfPaginationReached = results.isEmpty()

@@ -1,7 +1,10 @@
 package com.gabrielthecode.kontakt.domain.di
 
 import android.content.Context
+import androidx.room.Room
 import com.gabrielthecode.kontakt.data.database.AppDatabase
+import com.gabrielthecode.kontakt.data.database.remotekey.RemoteKeyDao
+import com.gabrielthecode.kontakt.data.database.user.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +18,22 @@ object DataModule {
 	@Singleton
 	@Provides
 	fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
-		return AppDatabase.getInstance(context)
+		return Room.databaseBuilder(
+			context.applicationContext,
+			AppDatabase::class.java, "kontaktapp.db"
+		)
+			.build()
+	}
+
+	@Singleton
+	@Provides
+	fun provideUserDao(database: AppDatabase): UserDao {
+		return database.getUserDao()
+	}
+
+	@Singleton
+	@Provides
+	fun provideRemoteKeyDao(database: AppDatabase): RemoteKeyDao {
+		return database.getRemoteKeyDao()
 	}
 }

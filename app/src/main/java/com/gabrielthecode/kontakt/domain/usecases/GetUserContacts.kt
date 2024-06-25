@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetUserContacts @Inject constructor(
 	private val repository: UserContactsRepository,
 ) {
-	fun getUserContacts(): Flow<PagingData<UserContactEntity>> {
+	operator fun invoke(): Flow<PagingData<UserContactEntity>> {
 		return repository.getUserContactsFromCache()
 	}
 }

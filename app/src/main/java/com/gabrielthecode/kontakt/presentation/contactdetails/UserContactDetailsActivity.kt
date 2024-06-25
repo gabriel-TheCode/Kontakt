@@ -19,7 +19,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserContactDetailsActivity : ComponentActivity() {
+
 	private val viewModel by viewModels<UserContactDetailsViewModel>()
+
 	private val userContact: UserContactUIModel? by lazy {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 			intent.extras!!.getParcelable(USER_CONTACT_UI_MODEL, UserContactUIModel::class.java)

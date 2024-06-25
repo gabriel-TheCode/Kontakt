@@ -10,37 +10,29 @@ import com.gabrielthecode.kontakt.presentation.contact.mapper.UserContactEntityT
 import com.gabrielthecode.kontakt.presentation.contact.uimodel.UserContactUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 class UserContactsViewModel @Inject constructor(
-	private val getUserContactsUseCase: GetUserContacts,
+	getUserContactsUseCase: GetUserContacts,
 	private val userContactEntityToUIModelMapper: UserContactEntityToUIModelMapper,
 ) : ViewModel() {
-
-	private val _userContactStateFlow: MutableStateFlow<PagingData<UserContactUIModel>> =
-		MutableStateFlow(PagingData.empty())
-	val userContactStateFlow: StateFlow<PagingData<UserContactUIModel>> = _userContactStateFlow
 
 	private val _event = MutableStateFlow<UserContactEvent>(UserContactEvent.None)
 	val event: StateFlow<UserContactEvent?> = _event
 
-	init {
-		viewModelScope.launch {
-			getUserContactsUseCase.getUserContacts().map { pagingData ->
-				pagingData.map { userEntity ->
-					userContactEntityToUIModelMapper.map(userEntity)
-				}
+	val userContactStateFlow: StateFlow<PagingData<UserContactUIModel>> =
+		getUserContactsUseCase().map { pagingData ->
+			pagingData.map { userEntity ->
+				userContactEntityToUIModelMapper.map(userEntity)
 			}
-				.cachedIn(viewModelScope) // Caches the paging data in the ViewModel scope
-				.collect {
-					_userContactStateFlow.value = it
-				}
 		}
-	}
+			.cachedIn(viewModelScope) // Caches paging data in the ViewModel scope to handle configuation changes
+			.stateIn(viewModelScope, SharingStarted.Eagerly, PagingData.empty())
 
 	fun onUserContactClick(uiModel: UserContactUIModel) {
 		_event.value = UserContactEvent.OnContactClickEvent(uiModel)
