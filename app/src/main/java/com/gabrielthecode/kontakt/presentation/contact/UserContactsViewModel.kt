@@ -31,7 +31,7 @@ class UserContactsViewModel @Inject constructor(
 				userContactEntityToUIModelMapper.map(userEntity)
 			}
 		}
-			.cachedIn(viewModelScope) // Caches paging data in the ViewModel scope to handle configuation changes
+			.cachedIn(viewModelScope) // Caches paging data in the ViewModel scope to handle configuration changes
 			.stateIn(viewModelScope, SharingStarted.Eagerly, PagingData.empty())
 
 	fun onUserContactClick(uiModel: UserContactUIModel) {
