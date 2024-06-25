@@ -1,6 +1,6 @@
 package com.gabrielthecode.kontakt
 
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
 import com.gabrielthecode.kontakt.presentation.contact.mapper.UserContactEntityToUIModelMapper
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

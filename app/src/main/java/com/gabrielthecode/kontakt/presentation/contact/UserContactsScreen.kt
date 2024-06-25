@@ -1,16 +1,11 @@
 package com.gabrielthecode.kontakt.presentation.contact
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -32,10 +27,7 @@ internal fun UserContactScreen(
 	userPagingData: LazyPagingItems<UserContactUIModel>,
 	onContactClick: (UserContactUIModel) -> Unit
 ) {
-	UserContactsScreenLoadedState(
-		onContactClick = onContactClick,
-		pagingItems = userPagingData
-	)
+	UserContactsScreenLoadedState(onContactClick = onContactClick, pagingItems = userPagingData)
 }
 
 @Composable
@@ -43,11 +35,7 @@ private fun UserContactsScreenLoadedState(
 	pagingItems: LazyPagingItems<UserContactUIModel>,
 	onContactClick: (UserContactUIModel) -> Unit
 ) {
-	val animateState = remember {
-		MutableTransitionState(false).apply {
-			targetState = true
-		}
-	}
+	val itemsCount = pagingItems.itemCount
 
 	KontaktTheme {
 		Surface(
@@ -61,51 +49,50 @@ private fun UserContactsScreenLoadedState(
 
 				LazyColumn {
 					pagingItems.itemKey { item -> item.uuid }
-					items(pagingItems.itemCount) { index ->
+					items(itemsCount) { index ->
 						pagingItems.get(index = index)?.let { user ->
-							UserContactItem(
-								user,
-								modifier = Modifier
-							) { onContactClick(it) }
+							UserContactItem(user, modifier = Modifier) { onContactClick(it) }
 						}
 					}
 
 					pagingItems.apply {
 						when {
-							loadState.refresh is LoadState.Loading -> {
-								item { PageLoader(modifier = Modifier.fillParentMaxSize()) }
-							}
-							loadState.append is LoadState.Loading -> {
+							loadState.refresh is LoadState.Loading ->
 								item {
-									InfiniteScrollLoader(modifier = Modifier)
+									if (itemsCount == 0) {
+										PageLoader(modifier = Modifier.fillParentMaxSize())
+									} else {
+										InfiniteScrollLoader(modifier = Modifier)
+									}
 								}
-							}
-							loadState.refresh is LoadState.Error -> {
-								if (pagingItems.itemCount == 0) {
-									item {
+							loadState.append is LoadState.Loading ->
+								item { InfiniteScrollLoader(modifier = Modifier) }
+							loadState.refresh is LoadState.Error ->
+								item {
+									if (itemsCount == 0) {
 										ErrorPage(
 											modifier = Modifier.fillParentMaxSize(),
 											title = stringResource(id = R.string.network_error),
 											message = stringResource(id = R.string.check_internet),
 											lottieRes = R.raw.wifi_error_anim,
-											onClickRetry = { retry() })
-									}
-								}
-							}
-							loadState.append is LoadState.Error -> {
-								item {
-									AnimatedVisibility(
-										visibleState = animateState,
-										enter = slideInHorizontally(),
-										exit = slideOutVertically()
-									) {
+											onClickRetry = { retry() }
+										)
+									} else {
 										ErrorBottomSection(
 											modifier = Modifier,
 											message = stringResource(R.string.unable_to_fetch),
-											onClickRetry = { retry() })
+											onClickRetry = { retry() }
+										)
 									}
 								}
-							}
+							loadState.append is LoadState.Error ->
+								item {
+									ErrorBottomSection(
+										modifier = Modifier,
+										message = stringResource(R.string.unable_to_fetch),
+										onClickRetry = { retry() }
+									)
+								}
 						}
 					}
 				}
