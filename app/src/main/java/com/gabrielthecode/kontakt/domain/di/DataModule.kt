@@ -3,8 +3,8 @@ package com.gabrielthecode.kontakt.domain.di
 import android.content.Context
 import androidx.room.Room
 import com.gabrielthecode.kontakt.data.database.AppDatabase
-import com.gabrielthecode.kontakt.data.database.remotekey.RemoteKeyDao
-import com.gabrielthecode.kontakt.data.database.user.UserDao
+import com.gabrielthecode.kontakt.data.database.dao.RemoteKeyDao
+import com.gabrielthecode.kontakt.data.database.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

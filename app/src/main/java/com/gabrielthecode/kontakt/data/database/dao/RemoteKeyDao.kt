@@ -1,9 +1,10 @@
-package com.gabrielthecode.kontakt.data.database.remotekey
+package com.gabrielthecode.kontakt.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.gabrielthecode.kontakt.data.database.entities.RemoteKeyEntity
 
 @Dao
 interface RemoteKeyDao {

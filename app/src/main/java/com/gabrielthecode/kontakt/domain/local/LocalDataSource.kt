@@ -1,8 +1,8 @@
 package com.gabrielthecode.kontakt.domain.local
 
 import androidx.paging.PagingSource
-import com.gabrielthecode.kontakt.data.database.remotekey.RemoteKeyEntity
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.RemoteKeyEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 
 interface LocalDataSource {
 	fun getUserContacts(): PagingSource<Int, UserContactEntity>

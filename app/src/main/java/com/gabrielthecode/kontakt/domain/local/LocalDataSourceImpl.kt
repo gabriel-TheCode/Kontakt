@@ -3,8 +3,8 @@ package com.gabrielthecode.kontakt.domain.local
 import androidx.paging.PagingSource
 import androidx.room.withTransaction
 import com.gabrielthecode.kontakt.data.database.AppDatabase
-import com.gabrielthecode.kontakt.data.database.remotekey.RemoteKeyEntity
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.RemoteKeyEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(

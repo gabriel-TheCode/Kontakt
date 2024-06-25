@@ -1,4 +1,4 @@
-package com.gabrielthecode.kontakt.data.database.user
+package com.gabrielthecode.kontakt.data.database.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 
 @Dao
 interface UserDao {

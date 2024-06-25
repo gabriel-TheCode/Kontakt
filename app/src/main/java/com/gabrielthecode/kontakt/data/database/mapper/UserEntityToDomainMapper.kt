@@ -1,7 +1,7 @@
 package com.gabrielthecode.kontakt.data.database.mapper
 
 import com.gabrielthecode.kontakt.domain.model.UserContactDomainModel
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 import com.gabrielthecode.kontakt.data.network.mapper.EntityMapper
 import javax.inject.Inject
 

@@ -11,7 +11,7 @@ import com.gabrielthecode.kontakt.domain.model.UserDomainModel
 import com.gabrielthecode.kontakt.domain.local.LocalDataSourceImpl
 import com.gabrielthecode.kontakt.domain.remote.RemoteDataSourceImpl
 import com.gabrielthecode.kontakt.data.database.mapper.UserEntityToDomainMapper
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 import com.gabrielthecode.kontakt.data.mediator.UserContactRemoteMediator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

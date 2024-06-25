@@ -1,4 +1,4 @@
-package com.gabrielthecode.kontakt.data.database.user
+package com.gabrielthecode.kontakt.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

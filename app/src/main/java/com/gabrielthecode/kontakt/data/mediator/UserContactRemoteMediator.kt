@@ -7,8 +7,8 @@ import androidx.paging.RemoteMediator
 import com.gabrielthecode.kontakt.domain.local.LocalDataSourceImpl
 import com.gabrielthecode.kontakt.domain.remote.RemoteDataSourceImpl
 import com.gabrielthecode.kontakt.data.database.mapper.UserEntityToDomainMapper
-import com.gabrielthecode.kontakt.data.database.remotekey.RemoteKeyEntity
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.RemoteKeyEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

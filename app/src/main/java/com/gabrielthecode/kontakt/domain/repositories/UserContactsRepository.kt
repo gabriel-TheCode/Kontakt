@@ -7,7 +7,7 @@ import androidx.paging.PagingData
 import com.gabrielthecode.kontakt.domain.local.LocalDataSourceImpl
 import com.gabrielthecode.kontakt.domain.remote.RemoteDataSourceImpl
 import com.gabrielthecode.kontakt.data.database.mapper.UserEntityToDomainMapper
-import com.gabrielthecode.kontakt.data.database.user.UserContactEntity
+import com.gabrielthecode.kontakt.data.database.entities.UserContactEntity
 import com.gabrielthecode.kontakt.data.mediator.UserContactRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
