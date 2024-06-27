@@ -1,4 +1,4 @@
-package com.gabrielthecode.kontakt
+package com.gabrielthecode.kontakt.data
 
 import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
 import com.gabrielthecode.kontakt.presentation.contact.mapper.UserContactEntityToUIModelMapper
@@ -7,11 +7,6 @@ import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 class UserContactEntityToUIModelMapperTest {
 	private lateinit var mapper: UserContactEntityToUIModelMapper
 
@@ -21,7 +16,7 @@ class UserContactEntityToUIModelMapperTest {
 	}
 
 	@Test
-	fun `map should map with correct values for UserContactEntity`() {
+	fun `test map should map with correct values for UserContactEntity`() {
 		val uiModel = mapper.map(getUserEntity())
 
 		uiModel.apply {
