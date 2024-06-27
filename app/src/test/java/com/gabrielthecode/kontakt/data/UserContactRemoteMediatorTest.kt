@@ -1,18 +1,18 @@
-package com.gabrielthecode.kontakt
+package com.gabrielthecode.kontakt.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingConfig
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import com.gabrielthecode.kontakt.data.local.datasource.LocalDataSourceImpl
+import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
+import com.gabrielthecode.kontakt.data.local.mapper.UserEntityToDomainMapper
+import com.gabrielthecode.kontakt.data.mediator.UserContactRemoteMediator
+import com.gabrielthecode.kontakt.data.remote.datasource.RemoteDataSourceImpl
 import com.gabrielthecode.kontakt.domain.model.Info
 import com.gabrielthecode.kontakt.domain.model.UserContactDomainModel
 import com.gabrielthecode.kontakt.domain.model.UserDomainModel
-import com.gabrielthecode.kontakt.data.local.datasource.LocalDataSourceImpl
-import com.gabrielthecode.kontakt.data.remote.datasource.RemoteDataSourceImpl
-import com.gabrielthecode.kontakt.data.local.mapper.UserEntityToDomainMapper
-import com.gabrielthecode.kontakt.data.local.entities.UserContactEntity
-import com.gabrielthecode.kontakt.data.mediator.UserContactRemoteMediator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -38,7 +38,7 @@ class UserContactRemoteMediatorTest {
 	}
 
 	@Test
-	fun testLoadRefreshSuccess() = runTest {
+	fun `test refresh load returns success and saves data`() = runTest {
 		val mediator =
 			UserContactRemoteMediator(remoteDataSource, localDataSource, userContactMapper)
 		val pagingState = PagingState<Int, UserContactEntity>(
@@ -60,7 +60,7 @@ class UserContactRemoteMediatorTest {
 	}
 
 	@Test
-	fun testLoadAppendSuccess() = runTest {
+	fun `test append load returns success and appends data`() = runTest {
 		val mediator =
 			UserContactRemoteMediator(remoteDataSource, localDataSource, userContactMapper)
 		val pagingState = PagingState<Int, UserContactEntity>(
@@ -80,7 +80,7 @@ class UserContactRemoteMediatorTest {
 	}
 
 	@Test
-	fun testLoadError() = runTest {
+	fun `test load returns error on exception`() = runTest {
 		val mediator =
 			UserContactRemoteMediator(remoteDataSource, localDataSource, userContactMapper)
 		val pagingState = PagingState<Int, UserContactEntity>(
