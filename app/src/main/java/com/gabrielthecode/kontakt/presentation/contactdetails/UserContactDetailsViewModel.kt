@@ -10,9 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserContactDetailsViewModel @Inject constructor() : ViewModel() {
 
-	private var defaultState = UserContactDetailsState.InitialState
-
-	private val _state = MutableStateFlow<UserContactDetailsState>(defaultState)
+	private val _state = MutableStateFlow<UserContactDetailsState>(UserContactDetailsState.InitialState)
 	val state: StateFlow<UserContactDetailsState> get() = _state
 
 	private val _event = MutableStateFlow<UserContactDetailsEvent>(UserContactDetailsEvent.None)

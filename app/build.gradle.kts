@@ -4,6 +4,7 @@ plugins {
 	alias(libs.plugins.kapt)
 	alias(libs.plugins.hiltAndroid)
 	alias(libs.plugins.kotlinParcelize)
+	alias(libs.plugins.googleServices)
 }
 
 android {
@@ -86,6 +87,7 @@ dependencies {
 	implementation(libs.androidx.paging.compose)
 	implementation(libs.androidx.paging.runtime.ktx)
 	implementation(libs.androidx.room.paging)
+	implementation(platform(libs.firebase.bom))
 	implementation(libs.airbnb.lottie.compose)
 	implementation(libs.com.github.bumptech.glide)
 	implementation(libs.com.github.bumptech.glide.annotations)
